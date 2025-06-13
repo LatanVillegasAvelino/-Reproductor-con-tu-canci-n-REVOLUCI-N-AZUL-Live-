@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🎧 Mi Reproductor Musical</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    audio {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    #playlist {
+      list-style: none;
+      padding: 0;
+      max-width: 500px;
+      margin: 30px auto;
+    }
+
+    #playlist li {
+      padding: 12px;
+      background: #222;
+      margin-bottom: 8px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    #playlist li:hover {
+      background: #444;
+    }
+
+    #playlist li.active {
+      background: #00ffc8;
+      color: #000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎶 Reproductor de Canciones</h1>
+
+  <audio id="audioPlayer" controls>
+    <source src="https://raw.githubusercontent.com/LatanVillegasAvelino/LatanVillegasAvelino.github.io/main/San%20Juan(MP3_320K).mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <ul id="playlist">
+    <li class="active" data-src="https://raw.githubusercontent.com/LatanVillegasAvelino/LatanVillegasAvelino.github.io/main/San%20Juan(MP3_320K).mp3">
+      San Juan
+    </li>
+    <li data-src="https://raw.githubusercontent.com/LatanVillegasAvelino/LatanVillegasAvelino.github.io/main/Mis%20audios/REVOLUCION%20AZUL%20(Live)(MP3_160K).mp3">
+      Revolución Azul (Live)
+    </li>
+  </ul>
+
+  <script>
+    const player = document.getElementById('audioPlayer');
+    const playlist = document.querySelectorAll('#playlist li');
+
+    playlist.forEach(track => {
+      track.addEventListener('click', function () {
+        // Quitar clase 'active' de todas
+        playlist.forEach(item => item.classList.remove('active'));
+        this.classList.add('active');
+
+        // Cambiar canción
+        const song = this.getAttribute('data-src');
+        player.src = song;
+        player.play();
+      });
+    });
+  </script>
+
+</body>
+</html>
